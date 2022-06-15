@@ -16,7 +16,7 @@ int findGCD(int num1, int num2){
             num2-=num1;
         }
     }
-    return num1;
+    return num2;
 }
 
 int main(){
