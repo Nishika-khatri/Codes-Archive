@@ -2,6 +2,15 @@
 
 using namespace std;
 
+//Bad Practice 
+/*
+int& func(int a){
+    int num = 10;
+    int& ans = num;
+    return ans;
+}
+*/
+
 void update2(int& a){
     a++;
 }
@@ -22,6 +31,7 @@ int main(){
     cout<<"Before a : "<<a<<endl;
     update2(a);
     cout<<"After a : "<<a<<endl;
+
 
     return 0;
 
