@@ -19,6 +19,12 @@ void insertAtHead(int data, Node* &head){
     head= temp;
 }
 
+void insertAtTail(int data, Node* &tail){
+    Node* temp = new Node(data);
+    tail->next = temp;
+    tail = temp;
+}
+
 void traverse(Node* &head){
 
     Node* temp = head;
@@ -32,7 +38,13 @@ int main(){
 
     Node* node1 = new Node(5);
     Node* head = node1;
+    Node* tail = node1;
+    cout<<"Insertion at Head : "<<endl;
     insertAtHead(10,head);
+    traverse(head);
+
+    cout<<"Insertion at Tail : "<<endl;
+    insertAtTail(20,tail);
     traverse(head);
     return 0;
 }
