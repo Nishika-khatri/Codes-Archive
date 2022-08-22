@@ -25,7 +25,7 @@ void insertAtTail(int data, Node* &tail){
     tail = temp;
 }
 
-void insertAtPosition(int pos, int data, Node* &head){
+void insertAtPosition(int pos, int data, Node* &head, Node* &tail){
     Node* node1 = new Node(data);
     
     if(pos == 1){
@@ -42,8 +42,43 @@ void insertAtPosition(int pos, int data, Node* &head){
         count++;
     }
 
+    if(temp->next== NULL){
+        insertAtTail(data,tail);
+        return;
+    }
+
     node1->next = temp->next;
     temp->next=node1;
+}
+
+void deleteFromPosition(Node* &head, int pos){
+    //delete from 1st position
+    Node* prevNode = head;
+    if(pos == 1){
+        head = prevNode->next;
+        delete prevNode;
+        return;
+    }
+
+    int count = 1;
+    Node* currentNode = head;
+    while(count!=pos-1){
+        prevNode=prevNode->next;
+        count++;
+    }
+    currentNode = prevNode->next;
+    prevNode->next = currentNode->next;
+    delete currentNode;
+}
+
+void deleteByValue(Node* &head, int data){
+    Node* prevNode = head;
+    int count = 0;
+    while(prevNode->data !=data){
+        prevNode= prevNode->next;
+        count++;
+    }
+    deleteFromPosition(head,count+1);
 }
 
 void traverse(Node* &head){
@@ -73,9 +108,20 @@ int main(){
     traverse(head);
 
     cout<<"\nAfter Insertion : "<<endl;
-    insertAtPosition(1,0,head);
-    insertAtPosition(5,20,head);
-    insertAtPosition(9,40,head);
+    insertAtPosition(1,0,head,tail);
+    insertAtPosition(5,20,head,tail);
+    insertAtPosition(9,40,head,tail);
+    traverse(head);
+    // cout<<"\nHead : "<<head->data<<endl;
+    // cout<<"Tail : "<<tail->data<<endl;
+
+    cout<<"\nAfter Deletion : "<<endl;
+    // deleteFromPosition(head,1);
+    deleteByValue(head,0);
+    traverse(head);
+
+    cout<<"\n";
+    deleteByValue(head,25);
     traverse(head);
     return 0;
 }
