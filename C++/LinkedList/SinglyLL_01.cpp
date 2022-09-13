@@ -68,6 +68,7 @@ void deleteFromPosition(Node* &head, int pos){
     }
     currentNode = prevNode->next;
     prevNode->next = currentNode->next;
+    currentNode->next = NULL;
     delete currentNode;
 }
 
